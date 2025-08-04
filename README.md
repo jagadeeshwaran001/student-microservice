@@ -1,4 +1,6 @@
 # student-microservice
+
+Please up the docker container for postgres database
 ### docker-compose.yml
 ``` yml
 services:
