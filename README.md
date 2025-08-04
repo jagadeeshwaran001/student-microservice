@@ -20,3 +20,5 @@ volumes:
   postgres_data:
 
 ```
+- Please un the all 4 service.
+- You can import the `nector.postman_collection.json` file into `postman` to test the Api.
