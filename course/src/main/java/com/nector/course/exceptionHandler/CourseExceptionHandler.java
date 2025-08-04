@@ -4,6 +4,7 @@ import com.nector.course.dto.ResponseDTO;
 import com.nector.course.exception.CourseNotFoundException;
 import com.nector.course.exception.EntityNecessaryFieldsNullException;
 import com.nector.course.exception.MarkNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -29,4 +30,12 @@ public class CourseExceptionHandler {
     public ResponseEntity<ResponseDTO<Void>> handleValueShouldNotBeNull(MarkNotFoundException markNotFoundException) {
         return ResponseEntity.status(markNotFoundException.getHttpStatus()).body(new ResponseDTO<Void>(markNotFoundException.getMessage()));
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    public ResponseEntity<ResponseDTO<Void>> handleException(Exception exception) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(new ResponseDTO<Void>(exception.getMessage()));
+    }
+
+
 }

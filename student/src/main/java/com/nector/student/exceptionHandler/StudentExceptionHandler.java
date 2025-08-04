@@ -38,4 +38,10 @@ public class StudentExceptionHandler {
     public ResponseEntity<ResponseDTO<Void>> handleerviceNotAvailableException(ServiceNotAvailableException serviceNotAvailableException) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(new ResponseDTO<>(serviceNotAvailableException.getMessage()));
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseBody
+    public ResponseEntity<ResponseDTO<Void>> handleException(Exception exception) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(new ResponseDTO<Void>(exception.getMessage()));
+    }
 }
